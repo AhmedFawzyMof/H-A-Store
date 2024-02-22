@@ -27,6 +27,7 @@
         <fieldset class="flex flex-wrap gap-3">
           <label
             v-for="color in product.colors"
+            v-if="color"
             :for="'Color' + color"
             :class="
               color == 'black'
@@ -62,6 +63,7 @@
         :alt="product.name"
       />
       <img
+        v-if="images"
         v-for="image in product.image"
         @click="chingeImage(image)"
         :src="image"
@@ -118,6 +120,7 @@ export default {
       image: "",
       color: "",
       colors: false,
+      images: false,
       quantity: 1,
     };
   },
@@ -151,32 +154,25 @@ export default {
 
       await axios.get(`/products/${prod_slug}`).then((response) => {
         const Products = response.data.Products;
-        let product = {};
-        Products.forEach((Product) => {
-          product["id"] = Product.id;
-          product["category"] = Product.category;
-          product["name"] = Product.name;
-          product["description"] = Product.description;
-          product["image"] = [];
-          product["colors"] = [];
-          product["price"] = Product.price;
-          product["slug"] = Product.slug;
-          product["tag"] = Product.tag;
-        });
-        for (let i = 0; i < Products.length; i++) {
-          const p = Products[i];
-
-          product.image.push(p.image);
-          product.colors.push(p.color.String);
+        let images = Products.image.split(",");
+        let colors = Products.color.String.split(",");
+        if (images[0] != "" && images.length > 1) {
+          Products.image = images;
+          this.images = true;
+          this.image = images[0];
+        } else {
+          this.image = Products.image;
         }
-        if (product.colors.length > 1) {
+        if (colors[0] != "" && colors.length > 1) {
+          Products.colors = colors;
           this.colors = true;
+          this.color = colors[0];
+        } else {
+          this.color = Products.color.String;
         }
 
-        this.image = product.image[0];
-        this.color = product.colors[0];
-        document.title = product.name;
-        this.product = product;
+        document.title = Products.name;
+        this.product = Products;
       });
     },
     addToCart() {
