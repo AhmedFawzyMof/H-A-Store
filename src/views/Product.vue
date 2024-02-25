@@ -150,6 +150,7 @@ export default {
       });
     },
     async getProduct() {
+      this.$store.state.loading = true
       const prod_slug = this.$route.params.product_slug;
 
       await axios.get(`/products/${prod_slug}`).then((response) => {
@@ -174,6 +175,8 @@ export default {
         document.title = Products.name;
         this.product = Products;
       });
+
+      this.$store.state.loading = false
     },
     addToCart() {
       const product = {

@@ -39,10 +39,13 @@ export default {
       const categorySlug = this.$route.params.category_slug;
       document.title = categorySlug + " | H&A";
 
+      this.$store.state.loading = true
       await axios.get(`/category/${categorySlug}`).then((response) => {
         const Products = response.data.Products;
         this.products = Products;
       });
+
+      this.$store.state.loading = false
     },
   },
 };

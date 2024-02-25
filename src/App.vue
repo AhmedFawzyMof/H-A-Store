@@ -1,5 +1,10 @@
 <template>
-  <header class="bg-gray-50">
+ <div class="loading" v-if="this.$store.state.loading">
+  <img class="logo" src="/img/logo.png" />
+      <div class="box"></div>
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+  <header v-if="!this.$store.state.loading" class="bg-gray-50">
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
       <div class="flex items-center justify-end gap-4">
         <button
@@ -247,14 +252,8 @@
       </div>
     </div>
   </header>
-  <div
-    class="is-loading-bar has-text-centered"
-    v-bind:class="{ 'is-loading': $store.state.isLoading }"
-  >
-    <div class="lds-dual-ring"></div>
-  </div>
-  <router-view />
-  <footer class="bg-gray-50">
+  <router-view/>
+  <footer class="bg-gray-50" v-if="!this.$store.state.loading">
     <div class="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
       <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
         <div class="mx-auto max-w-sm lg:max-w-none">
@@ -421,10 +420,13 @@ export default {
   },
   methods: {
     async getNavData() {
+      this.$store.state.loading = true
       await axios.get("/navdata").then((response) => {
         this.categories = response.data.Categories;
         this.tags = response.data.Tags;
       });
+
+      this.$store.state.loading = false
     },
     Logout() {
       axios.defaults.headers.common["Authorization"] = "";
@@ -448,7 +450,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap");
 * {
@@ -460,5 +462,69 @@ export default {
 }
 .menu {
   transform: translateY(-20px);
+}
+
+.loading {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  background: #fff;
+  z-index: 99;
+}
+
+.loading img.logo {
+    width: 205px;
+}
+
+.loader {
+  display: inline-block;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 90%;
+  border: 4px solid #7e7b7b;
+  animation: loader 2s infinite ease;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
 }
 </style>

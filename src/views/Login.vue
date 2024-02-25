@@ -169,8 +169,13 @@ export default {
         password: this.password,
       };
 
+
+
+      this.$store.state.loading = true
       await axios.post("/login", formData).then((response) => {
         if (response.data.Error) {
+
+      this.$store.state.loading = false
           this.errors.push({ message: response.data.Message });
           return;
         }

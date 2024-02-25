@@ -243,8 +243,12 @@ export default {
       };
 
       if (this.errors.length == 0) {
+
+      this.$store.state.loading = true
         axios.post("/register", formData).then((response) => {
           const errors = response.data.Error;
+
+      this.$store.state.loading = false
           if (!errors) {
             this.$router.push("/log-in");
           }

@@ -39,10 +39,14 @@ export default {
   },
   methods: {
     async performSearch() {
+
+      this.$store.state.loading = true
       await axios.get(`/search/${this.query}`).then((response) => {
         const Products = response.data.Products;
         this.products = Products;
       });
+
+      this.$store.state.loading = false
     },
   },
 };

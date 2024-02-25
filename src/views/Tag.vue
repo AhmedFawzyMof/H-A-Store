@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard
-          v-for="product in this.products"
+          v-for="product in products"
           v-bind:key="product.id"
           v-bind:product="product"
         />
@@ -37,6 +37,8 @@ export default {
   },
   methods: {
     async getTag() {
+
+      this.$store.state.loading = true
       const tagSlug = this.$route.params.tag_slug;
       document.title = tagSlug + " | H&A";
 
@@ -45,6 +47,8 @@ export default {
        
         this.products = Products;
       });
+
+      this.$store.state.loading = false
     },
   },
 };

@@ -119,9 +119,12 @@ export default {
         message: this.message,
       };
 
+      this.$store.state.loading = true
       axios.post(`/contact`, Data).then((response) => {
         this.$router.push("/contact/S");
       });
+
+      this.$store.state.loading = false
     },
   },
 };

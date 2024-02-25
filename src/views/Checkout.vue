@@ -267,8 +267,11 @@ export default {
       document.title = "Checkout | H&A";
     }
 
+      this.$store.state.loading = true
+
     await this.GetDollarPrice();
 
+      this.$store.state.loading = false
     this.cart = this.$store.state.cart;
     if (this.cart.items.length == 0) {
       this.$router.push("/cart");
@@ -446,7 +449,11 @@ export default {
       };
 
       if (this.$store.state.isAuthenticated) {
+
+      this.$store.state.loading = true
         axios.post("/auth/checkout", Data).then((response) => {
+
+      this.$store.state.loading = false
           if (response.data.Error) {
             // do tost with error
           }
@@ -455,7 +462,11 @@ export default {
           this.$router.push("/order/success");
         });
       } else {
+
+      this.$store.state.loading = true
         axios.post("/checkout", Data).then((response) => {
+
+      this.$store.state.loading = false
           if (response.data.Error) {
             // do tost with error
           }

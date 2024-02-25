@@ -51,10 +51,14 @@ export default {
   },
   methods: {
     async getLatestProducts() {
+
+      this.$store.state.loading = true
       await axios.get("/allproducts").then((response) => {
         const Products = response.data.Products;
         this.latestProducts = Products;
       });
+      
+      this.$store.state.loading = false
     },
   },
 };
