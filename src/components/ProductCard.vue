@@ -1,6 +1,20 @@
 <template>
   <li>
-    <router-link v-bind:to="'/products/' + product.slug" class="group block">
+    <router-link
+      v-bind:to="'/products/' + product.slug"
+      class="group block relative"
+    >
+      <button
+        class="absolute top-[55px] left-[10px] bg-white w-8 h-8 rounded-md grid place-items-center text-xl shadow-md transition-all hover:text-red-600"
+      >
+        <i class="bx bxs-heart-circle"></i>
+      </button>
+      <router-link
+        class="absolute top-[15px] left-[10px] bg-white w-8 h-8 rounded-md grid place-items-center text-xl shadow-md transition-all hover:text-red-600"
+        v-bind:to="'/products/' + product.slug"
+      >
+        <i class="bx bx-cart-add"></i>
+      </router-link>
       <img
         :src="product.image"
         alt=""
