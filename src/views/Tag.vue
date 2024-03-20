@@ -37,18 +37,17 @@ export default {
   },
   methods: {
     async getTag() {
-
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       const tagSlug = this.$route.params.tag_slug;
-      document.title = tagSlug + " | H&A";
+      document.title = tagSlug + " | البيت بيتك";
 
       await axios.get(`/tags/${tagSlug}`).then((response) => {
         const Products = response.data.Products;
-       
+
         this.products = Products;
       });
 
-      this.$store.state.loading = false
+      this.$store.state.loading = false;
     },
   },
 };

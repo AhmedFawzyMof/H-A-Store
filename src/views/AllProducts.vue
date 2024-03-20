@@ -132,7 +132,7 @@ export default {
     this.getAllCategoris();
     this.getAllProducts();
 
-    document.title = "All Products | H&A";
+    document.title = "All Products | البيت بيتك";
   },
   methods: {
     async getAllCategoris() {

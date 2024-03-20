@@ -262,9 +262,9 @@ export default {
     script.addEventListener("load", this.setLoaded);
     document.body.appendChild(script);
     if (this.$store.state.Lang) {
-      document.title = "الدفع | H&A";
+      document.title = "الدفع | البيت بيتك";
     } else {
-      document.title = "Checkout | H&A";
+      document.title = "Checkout | البيت بيتك";
     }
 
     this.$store.state.loading = true;

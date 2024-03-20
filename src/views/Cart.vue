@@ -82,9 +82,9 @@ export default {
     this.cart = this.$store.state.cart;
 
     if (this.$store.state.Lang) {
-      document.title = "عربة التسوق الخاصة بي | H&A";
+      document.title = "عربة التسوق الخاصة بي | البيت بيتك";
     } else {
-      document.title = "My Cart | H&A";
+      document.title = "My Cart | البيت بيتك";
     }
   },
   methods: {

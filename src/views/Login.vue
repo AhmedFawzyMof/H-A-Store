@@ -147,7 +147,7 @@ export default {
       this.$router.push("/");
     }
 
-    document.title = "Login | H&A";
+    document.title = "Login | البيت بيتك";
   },
   methods: {
     Password() {

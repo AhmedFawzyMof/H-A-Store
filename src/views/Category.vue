@@ -37,15 +37,15 @@ export default {
   methods: {
     async getCategory() {
       const categorySlug = this.$route.params.category_slug;
-      document.title = categorySlug + " | H&A";
+      document.title = categorySlug + " | البيت بيتك";
 
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       await axios.get(`/category/${categorySlug}`).then((response) => {
         const Products = response.data.Products;
         this.products = Products;
       });
 
-      this.$store.state.loading = false
+      this.$store.state.loading = false;
     },
   },
 };

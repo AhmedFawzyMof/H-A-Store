@@ -38,9 +38,9 @@ export default {
   name: "OS",
   mounted() {
     if (this.$store.state.Lang) {
-      document.title = "نجاح 🎉 | H&A";
+      document.title = "نجاح 🎉 | البيت بيتك";
     } else {
-      document.title = "Success 🎉 | H&A";
+      document.title = "Success 🎉 | البيت بيتك";
     }
 
     if (localStorage.getItem("reloaded")) {

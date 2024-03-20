@@ -96,9 +96,9 @@ export default {
   },
   mounted() {
     if (this.$store.state.Lang) {
-      document.title = "اتصل بنا | H&A";
+      document.title = "اتصل بنا | البيت بيتك";
     } else {
-      document.title = "Contact Us | H&A";
+      document.title = "Contact Us | البيت بيتك";
     }
   },
   methods: {

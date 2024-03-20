@@ -53,7 +53,7 @@
       <h1>Latest Products</h1>
       <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <ProductCard
-          v-for="product in latestProducts.slice(2, 6)"
+          v-for="product in latestProducts.slice(4, 8)"
           v-bind:key="product.id"
           v-bind:product="product"
         />
@@ -88,7 +88,7 @@ export default {
   },
   mounted() {
     this.getLatestProducts();
-    document.title = "HAstore";
+    document.title = "البيت بيتك";
     this.width = window.innerWidth;
   },
   methods: {

@@ -28,7 +28,7 @@ export default {
     };
   },
   mounted() {
-    document.title = "Search | H&A";
+    document.title = "Search | البيت بيتك";
 
     let uri = window.location.search;
     let params = new URLSearchParams(uri);
@@ -39,14 +39,13 @@ export default {
   },
   methods: {
     async performSearch() {
-
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       await axios.get(`/search/${this.query}`).then((response) => {
         const Products = response.data.Products;
         this.products = Products;
       });
 
-      this.$store.state.loading = false
+      this.$store.state.loading = false;
     },
   },
 };

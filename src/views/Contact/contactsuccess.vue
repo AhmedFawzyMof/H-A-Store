@@ -33,9 +33,9 @@ export default {
   name: "contactsuccess",
   mounted() {
     if (this.$store.state.Lang) {
-      document.title = "تم إرسال الرسالة بنجاح | H&A";
+      document.title = "تم إرسال الرسالة بنجاح | البيت بيتك";
     } else {
-      document.title = "the message sent successfully | H&A";
+      document.title = "the message sent successfully | البيت بيتك";
     }
   },
 };
