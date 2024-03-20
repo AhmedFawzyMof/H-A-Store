@@ -41,7 +41,7 @@
               <div class="flex justify-end">
                 <router-link
                   to="/check-out"
-                  class="block rounded bg-indigo-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                  class="block rounded bg-red-600 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                 >
                   Checkout
                 </router-link>
@@ -58,7 +58,7 @@
       <img src="/cart.png" alt="Empty Cart" class="sm:w-1/2" />
       <p class="capitalize">
         the cart is empty go
-        <router-link to="/" class="text-indigo-700"> shopping </router-link>
+        <router-link to="/" class="text-red-600"> shopping </router-link>
       </p>
     </div>
   </section>

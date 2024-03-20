@@ -1,9 +1,9 @@
 <template>
- <div class="loading" v-if="this.$store.state.loading">
-  <img class="logo" src="/img/logo.png" />
-      <div class="box"></div>
-      <span class="loader"><span class="loader-inner"></span></span>
-    </div>
+  <div class="loading" v-if="this.$store.state.loading">
+    <img class="logo" src="/img/logo.png" />
+    <div class="box"></div>
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
   <header v-if="!this.$store.state.loading" class="bg-gray-50">
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
       <div class="flex items-center justify-end gap-4">
@@ -138,20 +138,20 @@
           </router-link>
           <div
             v-if="auth"
-            class="w-full bg-indigo-700 h-10 text-white text-center flex items-center justify-center rounded"
+            class="w-full bg-red-600 h-10 text-white text-center flex items-center justify-center rounded"
           >
             <button @click="Logout()">Logout</button>
           </div>
           <div class="flex items-center gap-4" v-else="auth">
             <div class="grid grid-cols-2 w-full gap-5 place-items-center">
               <router-link
-                class="block rounded-md bg-indigo-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700"
+                class="block rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-red-600"
                 to="/log-in"
               >
                 Login
               </router-link>
               <router-link
-                class="block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700"
+                class="block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-red-600"
                 to="/sgin-up"
               >
                 Register
@@ -227,21 +227,21 @@
           </router-link>
           <div
             v-if="auth"
-            class="w-36 ml-auto bg-indigo-700 h-10 text-white text-center flex items-center justify-center rounded"
+            class="w-36 ml-auto bg-red-600 h-10 text-white text-center flex items-center justify-center rounded"
           >
             <button @click="Logout()">Logout</button>
           </div>
           <div class="flex items-center gap-4 ml-auto" v-else>
             <div class="sm:flex sm:gap-4">
               <router-link
-                class="block rounded-md bg-indigo-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700"
+                class="block rounded-md bg-red-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-red-600"
                 to="/log-in"
               >
                 Login
               </router-link>
 
               <router-link
-                class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-700 transition hover:bg-white hover:text-indigo-700/75 sm:block"
+                class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-red-600 transition hover:bg-white hover:text-red-600/75 sm:block"
                 to="/sgin-up"
               >
                 Register
@@ -252,7 +252,7 @@
       </div>
     </div>
   </header>
-  <router-view/>
+  <router-view />
   <footer class="bg-gray-50" v-if="!this.$store.state.loading">
     <div class="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
       <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
@@ -420,13 +420,13 @@ export default {
   },
   methods: {
     async getNavData() {
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       await axios.get("/navdata").then((response) => {
         this.categories = response.data.Categories;
         this.tags = response.data.Tags;
       });
 
-      this.$store.state.loading = false
+      this.$store.state.loading = false;
     },
     Logout() {
       axios.defaults.headers.common["Authorization"] = "";
@@ -478,7 +478,7 @@ export default {
 }
 
 .loading img.logo {
-    width: 205px;
+  width: 205px;
 }
 
 .loader {

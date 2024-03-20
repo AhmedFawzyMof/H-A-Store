@@ -12,7 +12,7 @@
           :to="'/tag/' + product.tag"
         >
           <span
-            class="absolute rounded inset-0 translate-x-1.5 translate-y-1.5 bg-indigo-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+            class="absolute rounded inset-0 translate-x-1.5 translate-y-1.5 bg-red-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
           ></span>
 
           <span
@@ -102,7 +102,7 @@
       </div>
       <button
         @click="addToCart()"
-        class="mt-5 block w-full rounded bg-indigo-500 p-4 text-sm text-white font-medium transition hover:scale-105"
+        class="mt-5 block w-full rounded bg-red-500 p-4 text-sm text-white font-medium transition hover:scale-105"
       >
         Add to Cart
       </button>
@@ -150,7 +150,7 @@ export default {
       });
     },
     async getProduct() {
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       const prod_slug = this.$route.params.product_slug;
 
       await axios.get(`/products/${prod_slug}`).then((response) => {
@@ -176,7 +176,7 @@ export default {
         this.product = Products;
       });
 
-      this.$store.state.loading = false
+      this.$store.state.loading = false;
     },
     addToCart() {
       const product = {

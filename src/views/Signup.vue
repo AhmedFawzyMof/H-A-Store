@@ -193,7 +193,7 @@
                 </strong>
               </div>
 
-              <p class="mt-2 text-sm text-red-700">
+              <p class="mt-2 text-sm text-red-600">
                 {{ error.message }}
               </p>
             </div>
@@ -243,16 +243,15 @@ export default {
       };
 
       if (this.errors.length == 0) {
-
-      this.$store.state.loading = true
+        this.$store.state.loading = true;
         axios.post("/register", formData).then((response) => {
           const errors = response.data.Error;
 
-      this.$store.state.loading = false
+          this.$store.state.loading = false;
           if (!errors) {
             this.$router.push("/log-in");
           }
-          this.errors.push({message:response.data.Message});
+          this.errors.push({ message: response.data.Message });
         });
       }
     },

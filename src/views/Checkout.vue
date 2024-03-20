@@ -166,7 +166,7 @@
           </div>
           <button
             type="submit"
-            class="mt-4 bg-indigo-700 text-white w-full h-11 rounded-md"
+            class="mt-4 bg-red-600 text-white w-full h-11 rounded-md"
           >
             Order
           </button>
@@ -267,11 +267,11 @@ export default {
       document.title = "Checkout | H&A";
     }
 
-      this.$store.state.loading = true
+    this.$store.state.loading = true;
 
     await this.GetDollarPrice();
 
-      this.$store.state.loading = false
+    this.$store.state.loading = false;
     this.cart = this.$store.state.cart;
     if (this.cart.items.length == 0) {
       this.$router.push("/cart");
@@ -352,12 +352,12 @@ export default {
               address: this.address,
               items: items,
             };
-            if (this.$store.state.isAuthenticated){
+            if (this.$store.state.isAuthenticated) {
               axios.post("/auth/checkout", Data).then((response) => {
-              this.$store.commit("clearCart");
+                this.$store.commit("clearCart");
 
-              this.$router.push("/cart/O-S");
-            });
+                this.$router.push("/cart/O-S");
+              });
             }
             axios.post("/checkout", Data).then((response) => {
               this.$store.commit("clearCart");
@@ -449,11 +449,9 @@ export default {
       };
 
       if (this.$store.state.isAuthenticated) {
-
-      this.$store.state.loading = true
+        this.$store.state.loading = true;
         axios.post("/auth/checkout", Data).then((response) => {
-
-      this.$store.state.loading = false
+          this.$store.state.loading = false;
           if (response.data.Error) {
             // do tost with error
           }
@@ -462,11 +460,9 @@ export default {
           this.$router.push("/order/success");
         });
       } else {
-
-      this.$store.state.loading = true
+        this.$store.state.loading = true;
         axios.post("/checkout", Data).then((response) => {
-
-      this.$store.state.loading = false
+          this.$store.state.loading = false;
           if (response.data.Error) {
             // do tost with error
           }

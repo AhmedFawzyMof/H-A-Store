@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-lg">
-      <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
+      <h1 class="text-center text-2xl font-bold text-red-600 sm:text-3xl">
         Get started today
       </h1>
 
@@ -92,7 +92,7 @@
 
         <button
           type="submit"
-          class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+          class="block w-full rounded-lg bg-red-600 px-5 py-3 text-sm font-medium text-white"
         >
           Sign in
         </button>
@@ -169,13 +169,10 @@ export default {
         password: this.password,
       };
 
-
-
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       await axios.post("/login", formData).then((response) => {
         if (response.data.Error) {
-
-      this.$store.state.loading = false
+          this.$store.state.loading = false;
           this.errors.push({ message: response.data.Message });
           return;
         }

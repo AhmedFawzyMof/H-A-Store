@@ -44,7 +44,7 @@
 
       <button
         @click="removeFromCart"
-        class="text-gray-600 transition hover:text-indigo-600"
+        class="text-gray-600 transition hover:text-red-600"
       >
         <span class="sr-only">Remove item</span>
 

@@ -8,8 +8,8 @@
           </p>
 
           <div class="mt-8">
-            <a href="" class="text-2xl font-bold text-indigo-700">
-              0121 215 8465 
+            <a href="" class="text-2xl font-bold text-red-600">
+              0121 215 8465
             </a>
           </div>
         </div>
@@ -70,9 +70,9 @@
             <div class="mt-4">
               <button
                 type="submit"
-                class="inline-block w-full rounded-lg bg-indigo-700 px-5 py-3 font-medium text-white sm:w-auto"
+                class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
               >
-                Send Message 
+                Send Message
               </button>
             </div>
           </form>
@@ -119,12 +119,12 @@ export default {
         message: this.message,
       };
 
-      this.$store.state.loading = true
+      this.$store.state.loading = true;
       axios.post(`/contact`, Data).then((response) => {
         this.$router.push("/contact/S");
       });
 
-      this.$store.state.loading = false
+      this.$store.state.loading = false;
     },
   },
 };
