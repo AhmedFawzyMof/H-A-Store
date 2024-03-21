@@ -41,23 +41,19 @@
   <div id="product-collection">
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <h1>Best Selling Products</h1>
-      <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul class="mt-8 grid gap-4 grid-cols-2 lg:grid-cols-4">
         <ProductCard
-          v-for="product in latestProducts.slice(0, 4)"
+          v-for="product in Products"
           v-bind:key="product.id"
           v-bind:product="product"
         />
       </ul>
-    </div>
-    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <h1>Latest Products</h1>
-      <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <ProductCard
-          v-for="product in latestProducts.slice(4, 8)"
-          v-bind:key="product.id"
-          v-bind:product="product"
-        />
-      </ul>
+      <button
+        @click="showMore()"
+        class="py-2 px-4 mt-4 rounded-md cursor-pointer bg-red-600 text-white"
+      >
+        More
+      </button>
     </div>
   </div>
 </template>
@@ -82,6 +78,7 @@ export default {
         { product: "Dog-Tool", img: "/img/slide/3.jpg" },
       ],
       latestProducts: [],
+      Products: [],
       categories: [],
       width: 0,
     };
@@ -98,12 +95,16 @@ export default {
         const Products = response.data.Products;
         this.latestProducts = Products;
       });
+      this.Products = this.latestProducts.slice(0, 4);
       await axios.get("/allcategories").then((response) => {
         const Categories = response.data.Categories;
         this.categories = Categories;
       });
 
       this.$store.state.loading = false;
+    },
+    showMore() {
+      this.Products = this.latestProducts.slice(0, this.Products.length + 4);
     },
   },
 };
