@@ -99,17 +99,18 @@
   <div class="notfound" v-if="this.allproducts.length == 0">
     <h1 class="subtitle">not found please try again</h1>
   </div>
-  <div
-    class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8"
-    v-else
-  >
-    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <ProductCard
-        v-for="product in allproducts"
-        v-bind:key="product.id"
-        v-bind:product="product"
-      />
-    </ul>
+  <div id="product-collection">
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <h1>Best Selling Products</h1>
+      <ul class="mt-8 grid gap-4 grid-cols-2 lg:grid-cols-4">
+        <ProductCard
+          v-for="product in allproducts"
+          v-bind:key="product.id"
+          v-bind:product="product"
+        />
+      </ul>
+    
+    </div>
   </div>
 </template>
 <script>
