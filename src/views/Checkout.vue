@@ -239,7 +239,6 @@ export default {
       loaded: false,
       discount: 0,
       paypal: false,
-      dollarPrice: 0,
       method: "",
       code: "",
       cart: {
@@ -279,11 +278,21 @@ export default {
     this.method = "cash";
   },
   methods: {
-    setLoaded: function () {
-      const subtotal = this.cart.items.reduce((acc, curVal) => {
-        return (acc += curVal.product.price * curVal.quantity);
-      }, 0);
-      const total = subtotal / this.dollarPrice;
+    setLoaded: async function () {
+      const dollarPrice = await this.GetDollarPrice();
+      const items = this.cart.items;
+
+      let carttotal = 0;
+      items.forEach((item) => {
+        carttotal += item.product.price * item.quantity;
+      });
+      let shipping = carttotal * 0.1;
+
+      const subtotal = carttotal + shipping;
+
+      const total = Math.round(subtotal / dollarPrice);
+
+      console.log(total);
       this.loaded = true;
       paypal_sdk
         .Buttons({
@@ -373,10 +382,12 @@ export default {
     },
     async GetDollarPrice() {
       const req = await fetch(
-        "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/egp.json"
+        "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=cf8ca466c1fd4643a58b769d6c5c72ff&symbols=EGP"
       );
+
       const dollarToEgp = await req.json();
-      this.dollarPrice = dollarToEgp.egp;
+
+      return dollarToEgp.rates.EGP;
     },
     ChingeTheMethod(method) {
       this.method = method;
