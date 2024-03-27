@@ -165,7 +165,6 @@
           <button
             @click="(showcategory = !showcategory), (showtags = false)"
             class="hover:bg-gray-50 h-9 rounded-lg flex items-center pl-2"
-            to="/"
           >
             Categories <i class="bx bx-chevron-down"></i>
           </button>
@@ -526,5 +525,10 @@ export default {
   100% {
     height: 0%;
   }
+}
+
+.menu {
+  position: relative; /* Add this line */
+  z-index: 1000; /* Add this line */
 }
 </style>
